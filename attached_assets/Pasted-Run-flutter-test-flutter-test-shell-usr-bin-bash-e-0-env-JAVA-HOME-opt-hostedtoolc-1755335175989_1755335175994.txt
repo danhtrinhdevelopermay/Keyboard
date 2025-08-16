@@ -1,0 +1,44 @@
+Run flutter test
+  flutter test
+  shell: /usr/bin/bash -e {0}
+  env:
+    JAVA_HOME: /opt/hostedtoolcache/Java_Zulu_jdk/11.0.28-6/x64
+    JAVA_HOME_11_X64: /opt/hostedtoolcache/Java_Zulu_jdk/11.0.28-6/x64
+    FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.16.0-x64
+    PUB_CACHE: /home/runner/.pub-cache
+  
+❌ iOS Keyboard app smoke test (failed)
+  ══╡ EXCEPTION CAUGHT BY RENDERING LIBRARY ╞═════════════════════════════════════════════════════════
+  The following assertion was thrown during layout:
+  A RenderFlex overflowed by 86 pixels on the bottom.
+  The relevant error-causing widget was:
+    Column Column:file:///home/runner/work/Keyboard/Keyboard/lib/main.dart:46:22
+  The overflowing RenderFlex has an orientation of Axis.vertical.
+  The edge of the RenderFlex that is overflowing has been marked in the rendering with a yellow and
+  black striped pattern. This is usually caused by the contents being too big for the RenderFlex.
+  Consider applying a flex factor (e.g. using an Expanded widget) to force the children of the
+  RenderFlex to fit within the available space instead of being sized to their natural size.
+  This is considered an error condition because it indicates that there is content that cannot be
+  seen. If the content is legitimately bigger than the available space, consider clipping it with a
+  ClipRect widget before putting it in the flex, or using a scrollable container rather than a Flex,
+  like a ListView.
+  The specific RenderFlex in question is: RenderFlex#6ee33 relayoutBoundary=up3 OVERFLOWING:
+    needs compositing
+    creator: Column ← Padding ← Expanded ← Column ← KeyedSubtree-[GlobalKey#f7d2b] ← _BodyBuilder ←
+      MediaQuery ← LayoutId-[<_ScaffoldSlot.body>] ← CustomMultiChildLayout ← _ActionsScope ← Actions ←
+      AnimatedBuilder ← ⋯
+    parentData: offset=Offset(16.0, 16.0) (can use size)
+    constraints: BoxConstraints(0.0<=w<=768.0, h=287.0)
+    size: Size(768.0, 287.0)
+    direction: vertical
+    mainAxisAlignment: start
+    mainAxisSize: max
+    crossAxisAlignment: start
+    textDirection: ltr
+    verticalDirection: down
+  ◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤◢◤
+  ════════════════════════════════════════════════════════════════════════════════════════════════════
+  Test failed. See exception logs above.
+  The test description was: iOS Keyboard app smoke test
+Error: 0 tests passed, 1 failed.
+Error: Process completed with exit code 1.

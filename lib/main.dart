@@ -41,7 +41,8 @@ class _KeyboardDemoScreenState extends State<KeyboardDemoScreen> {
       body: Column(
         children: [
           Expanded(
-            child: Padding(
+            flex: 2,
+            child: SingleChildScrollView(
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -57,9 +58,9 @@ class _KeyboardDemoScreenState extends State<KeyboardDemoScreen> {
                       hintText: 'Tap here to type...',
                       border: OutlineInputBorder(),
                     ),
-                    maxLines: 5,
+                    maxLines: 3,
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 16),
                   const Text(
                     'Instructions:',
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
@@ -67,18 +68,19 @@ class _KeyboardDemoScreenState extends State<KeyboardDemoScreen> {
                   const SizedBox(height: 8),
                   const Text(
                     '1. Go to Settings > System > Languages & input\n'
-                    '2. Tap on "Virtual keyboard"\n'
-                    '3. Tap on "Manage keyboards"\n'
-                    '4. Enable "iOS Keyboard"\n'
-                    '5. Tap the keyboard icon in any text field\n'
-                    '6. Select "iOS Keyboard" from the list',
-                    style: TextStyle(fontSize: 14),
+                    '2. Tap "Virtual keyboard" > "Manage keyboards"\n'
+                    '3. Enable "iOS Keyboard"\n'
+                    '4. Select "iOS Keyboard" from keyboard switcher',
+                    style: TextStyle(fontSize: 12),
                   ),
                 ],
               ),
             ),
           ),
-          const IOSKeyboard(),
+          const Flexible(
+            flex: 1,
+            child: IOSKeyboard(),
+          ),
         ],
       ),
     );
