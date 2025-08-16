@@ -69,33 +69,34 @@ class _IOSKeyboardState extends State<IOSKeyboard> {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             // Drag indicator
             Container(
               width: 36,
-              height: 5,
+              height: 3,
               decoration: BoxDecoration(
                 color: Colors.black26,
-                borderRadius: BorderRadius.circular(2.5),
+                borderRadius: BorderRadius.circular(1.5),
               ),
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: 6),
             
             // Row 1
             _buildKeyRow(isNumberMode ? numberRow : row1),
-            const SizedBox(height: 8),
+            const SizedBox(height: 4),
             
             // Row 2
             _buildKeyRow(row2),
-            const SizedBox(height: 8),
+            const SizedBox(height: 4),
             
             // Row 3 with shift and backspace
             _buildThirdRow(),
-            const SizedBox(height: 8),
+            const SizedBox(height: 4),
             
             // Bottom row with 123, space, search
             _buildBottomRow(),
-            const SizedBox(height: 8),
+            const SizedBox(height: 4),
           ],
         ),
       ),
@@ -227,8 +228,8 @@ class _IOSKeyboardState extends State<IOSKeyboard> {
     return GestureDetector(
       onTap: () => _onKeyTap(key),
       child: Container(
-        width: 32,
-        height: 40,
+        width: 28,
+        height: 32,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(6),
@@ -264,8 +265,8 @@ class _IOSKeyboardState extends State<IOSKeyboard> {
     return GestureDetector(
       onTap: () => _onKeyTap(key),
       child: Container(
-        width: width ?? 42,
-        height: height ?? 40,
+        width: width ?? 36,
+        height: height ?? 32,
         decoration: BoxDecoration(
           color: isPressed ? Colors.black : const Color(0xFFAEB3BB),
           borderRadius: BorderRadius.circular(6),
