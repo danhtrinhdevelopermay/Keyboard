@@ -1,0 +1,38 @@
+Run flutter build apk --release
+  flutter build apk --release
+  shell: /usr/bin/bash -e {0}
+  env:
+    JAVA_HOME: /opt/hostedtoolcache/Java_Zulu_jdk/11.0.28-6/x64
+    JAVA_HOME_11_X64: /opt/hostedtoolcache/Java_Zulu_jdk/11.0.28-6/x64
+    FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.16.0-x64
+    PUB_CACHE: /home/runner/.pub-cache
+
+Running Gradle task 'assembleRelease'...                        
+Checking the license for package Android SDK Build-Tools 30.0.3 in /usr/local/lib/android/sdk/licenses
+License for package Android SDK Build-Tools 30.0.3 accepted.
+Preparing "Install Android SDK Build-Tools 30.0.3 (revision: 30.0.3)".
+"Install Android SDK Build-Tools 30.0.3 (revision: 30.0.3)" ready.
+Installing Android SDK Build-Tools 30.0.3 in /usr/local/lib/android/sdk/build-tools/30.0.3
+"Install Android SDK Build-Tools 30.0.3 (revision: 30.0.3)" complete.
+"Install Android SDK Build-Tools 30.0.3 (revision: 30.0.3)" finished.
+Font asset "MaterialIcons-Regular.otf" was tree-shaken, reducing it from 1645184 to 1664 bytes (99.9% reduction). Tree-shaking can be disabled by providing the --no-tree-shake-icons flag when building your app.
+/home/runner/work/Keyboard/Keyboard/android/app/src/main/AndroidManifest.xml:8:9-18:19 Error:
+	android:exported needs to be explicitly specified for element <service#com.example.ios_keyboard_android.KeyboardService>. Apps targeting Android 12 and higher are required to specify an explicit value for `android:exported` when the corresponding component has an intent filter defined. See https://developer.android.com/guide/topics/manifest/activity-element#exported for details.
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':app:processReleaseMainManifest'.
+> Manifest merger failed : android:exported needs to be explicitly specified for element <service#com.example.ios_keyboard_android.KeyboardService>. Apps targeting Android 12 and higher are required to specify an explicit value for `android:exported` when the corresponding component has an intent filter defined. See https://developer.android.com/guide/topics/manifest/activity-element#exported for details.
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+
+* Get more help at https://help.gradle.org
+
+BUILD FAILED in 2m 10s
+Running Gradle task 'assembleRelease'...                          131.2s
+Gradle task assembleRelease failed with exit code 1
+Error: Process completed with exit code 1.
