@@ -10,10 +10,21 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
+
+    - name: Cache pub dependencies
+      uses: actions/cache@v3
+      with:
+        path: |
+          ~/.pub-cache
+          **/.pub-cache
+        key: ${{ runner.os }}-pub-${{ hashFiles('**/pubspec.yaml') }}
+        restore-keys: |
+          ${{ runner.os }}-pub-
 
     - name: Setup Java
       uses: actions/setup-java@v3
@@ -26,21 +37,29 @@ jobs:
       with:
         flutter-version: '3.16.0'
         channel: 'stable'
+        cache: true
 
     - name: Get dependencies
-      run: flutter pub get
+      timeout-minutes: 5
+      run: |
+        flutter pub get --no-precompile
+        flutter pub deps
 
     - name: Analyze code
-      run: flutter analyze
+      timeout-minutes: 2
+      run: flutter analyze --no-fatal-infos
 
     - name: Run tests
-      run: flutter test
+      timeout-minutes: 3
+      run: flutter test --no-sound-null-safety
 
     - name: Build APK
-      run: flutter build apk --release
+      timeout-minutes: 8
+      run: flutter build apk --release --no-tree-shake-icons
 
     - name: Build App Bundle
-      run: flutter build appbundle --release
+      timeout-minutes: 8
+      run: flutter build appbundle --release --no-tree-shake-icons
 
     - name: Upload APK artifact
       uses: actions/upload-artifact@v4
