@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iOS Keyboard Android - Demo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🍎 iOS Keyboard for Android</h1>
+            <p>Complete Flutter project with GitHub Actions for APK building</p>
+        </header>
+        
+        <div class="demo-section">
+            <h2>Live Demo - iOS Keyboard Interface</h2>
+            <div class="text-input-area">
+                <textarea id="demoText" placeholder="Tap keys below to type..."></textarea>
+            </div>
+            
+            <div class="keyboard-container">
+                <!-- iOS-style keyboard -->
+                <div class="ios-keyboard">
+                    <!-- Drag indicator -->
+                    <div class="drag-indicator"></div>
+                    
+                    <!-- Row 1 -->
+                    <div class="key-row">
+                        <div class="key" data-key="q">q</div>
+                        <div class="key" data-key="w">w</div>
+                        <div class="key" data-key="e">e</div>
+                        <div class="key" data-key="r">r</div>
+                        <div class="key" data-key="t">t</div>
+                        <div class="key" data-key="y">y</div>
+                        <div class="key" data-key="u">u</div>
+                        <div class="key" data-key="i">i</div>
+                        <div class="key" data-key="o">o</div>
+                        <div class="key" data-key="p">p</div>
+                    </div>
+                    
+                    <!-- Row 2 -->
+                    <div class="key-row">
+                        <div class="key" data-key="a">a</div>
+                        <div class="key" data-key="s">s</div>
+                        <div class="key" data-key="d">d</div>
+                        <div class="key" data-key="f">f</div>
+                        <div class="key" data-key="g">g</div>
+                        <div class="key" data-key="h">h</div>
+                        <div class="key" data-key="j">j</div>
+                        <div class="key" data-key="k">k</div>
+                        <div class="key" data-key="l">l</div>
+                    </div>
+                    
+                    <!-- Row 3 -->
+                    <div class="key-row">
+                        <div class="key special-key shift-key" data-key="shift">⇧</div>
+                        <div class="key" data-key="z">z</div>
+                        <div class="key" data-key="x">x</div>
+                        <div class="key" data-key="c">c</div>
+                        <div class="key" data-key="v">v</div>
+                        <div class="key" data-key="b">b</div>
+                        <div class="key" data-key="n">n</div>
+                        <div class="key" data-key="m">m</div>
+                        <div class="key special-key" data-key="backspace">⌫</div>
+                    </div>
+                    
+                    <!-- Bottom row -->
+                    <div class="key-row bottom-row">
+                        <div class="key special-key" data-key="123">123</div>
+                        <div class="key special-key emoji-key" data-key="emoji">😊</div>
+                        <div class="key space-key" data-key="space">space</div>
+                        <div class="key special-key search-key" data-key="search">search</div>
+                        <div class="key special-key" data-key="mic">🎤</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="project-info">
+            <h2>📱 Android App Features</h2>
+            <div class="features">
+                <div class="feature">
+                    <h3>🎨 Pixel-Perfect iOS Design</h3>
+                    <p>Identical layout, colors, and typography matching iOS keyboard</p>
+                </div>
+                <div class="feature">
+                    <h3>🚀 Flutter Implementation</h3>
+                    <p>Cross-platform framework with native Android keyboard service</p>
+                </div>
+                <div class="feature">
+                    <h3>⚙️ GitHub Actions CI/CD</h3>
+                    <p>Automatic APK building, testing, and release management</p>
+                </div>
+                <div class="feature">
+                    <h3>📦 Input Method Service</h3>
+                    <p>Full Android keyboard integration with system settings</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="installation">
+            <h2>🔧 Installation Instructions</h2>
+            <ol>
+                <li>Download the APK from GitHub Releases</li>
+                <li>Enable "Install from unknown sources" in Android settings</li>
+                <li>Install the APK file</li>
+                <li>Go to <strong>Settings → System → Languages & input</strong></li>
+                <li>Tap <strong>Virtual keyboard → Manage keyboards</strong></li>
+                <li>Enable <strong>iOS Keyboard</strong></li>
+                <li>In any text field, select the iOS Keyboard from the keyboard switcher</li>
+            </ol>
+        </div>
+        
+        <div class="technical-details">
+            <h2>🛠️ Technical Implementation</h2>
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <h4>Frontend</h4>
+                    <ul>
+                        <li>Flutter 3.16.0</li>
+                        <li>Material Design 3</li>
+                        <li>Custom iOS-style widgets</li>
+                    </ul>
+                </div>
+                <div class="tech-item">
+                    <h4>Android Integration</h4>
+                    <ul>
+                        <li>Input Method Service</li>
+                        <li>Kotlin/Java bridge</li>
+                        <li>System keyboard API</li>
+                    </ul>
+                </div>
+                <div class="tech-item">
+                    <h4>Build System</h4>
+                    <ul>
+                        <li>GitHub Actions</li>
+                        <li>Automated APK/AAB building</li>
+                        <li>Release management</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

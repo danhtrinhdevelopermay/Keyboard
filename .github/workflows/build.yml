@@ -1,0 +1,81 @@
+name: Build Android APK
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Setup Java
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'zulu'
+        java-version: '11'
+
+    - name: Setup Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: '3.16.0'
+        channel: 'stable'
+
+    - name: Get dependencies
+      run: flutter pub get
+
+    - name: Analyze code
+      run: flutter analyze
+
+    - name: Run tests
+      run: flutter test
+
+    - name: Build APK
+      run: flutter build apk --release
+
+    - name: Build App Bundle
+      run: flutter build appbundle --release
+
+    - name: Upload APK artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: ios-keyboard-android-apk
+        path: build/app/outputs/flutter-apk/app-release.apk
+
+    - name: Upload App Bundle artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: ios-keyboard-android-bundle
+        path: build/app/outputs/bundle/release/app-release.aab
+
+    - name: Create Release
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      uses: softprops/action-gh-release@v1
+      with:
+        tag_name: v${{ github.run_number }}
+        name: Release v${{ github.run_number }}
+        body: |
+          Automated release of iOS Keyboard Android App
+          
+          ## Changes
+          - Built from commit: ${{ github.sha }}
+          
+          ## Installation
+          1. Download the APK file
+          2. Enable "Unknown sources" in Android settings
+          3. Install the APK
+          4. Go to Settings > System > Languages & input > Virtual keyboard
+          5. Enable "iOS Keyboard"
+        files: |
+          build/app/outputs/flutter-apk/app-release.apk
+          build/app/outputs/bundle/release/app-release.aab
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
