@@ -41,8 +41,8 @@ class KeyboardService : InputMethodService(), KeyboardView.OnKeyboardActionListe
         soundManager = SoundManager(this)
         textExpansionManager = TextExpansionManager(this)
         
-        // Use container layout with suggestion bar
-        containerView = layoutInflater.inflate(R.layout.keyboard_container, null) as LinearLayout
+        // Use Spotlight container layout
+        containerView = layoutInflater.inflate(R.layout.spotlight_keyboard_container, null) as LinearLayout
         keyboardView = containerView?.findViewById(R.id.keyboardView)
         
         // Initialize suggestion bar views

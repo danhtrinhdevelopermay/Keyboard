@@ -4,21 +4,21 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     
     <application
-        android:label="iOS Keyboard"
+        android:label="iOS Spotlight Keyboard"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         
-        <!-- Keyboard Service -->
+        <!-- Spotlight Keyboard Service -->
         <service
-            android:name=".KeyboardService"
-            android:label="iOS Keyboard"
+            android:name=".SpotlightKeyboardService"
+            android:label="iOS Spotlight Keyboard"
             android:permission="android.permission.BIND_INPUT_METHOD"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.view.InputMethod" />
             </intent-filter>
             <meta-data
-                android:name="android.view.im"
+                android:name="android:view.im"
                 android:resource="@xml/method" />
         </service>
 
