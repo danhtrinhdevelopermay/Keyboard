@@ -1,0 +1,78 @@
+Rồi 👍, để bạn làm ứng dụng Android mô phỏng **bàn phím iOS (QuickType Keyboard)** thì mình sẽ liệt kê chi tiết các **tính năng và hiệu ứng** đặc trưng mà iPhone/iPad có, để bạn tham khảo khi phát triển:
+
+---
+
+## 📌 Các tính năng chính của bàn phím iOS
+
+1. **Tự động gợi ý từ (QuickType)**
+
+   * Thanh gợi ý phía trên bàn phím hiển thị 3 từ gợi ý theo ngữ cảnh.
+   * Có thể gợi ý cả **emoji** phù hợp với câu.
+
+2. **Tự động sửa lỗi chính tả (Auto-Correction)**
+
+   * Khi gõ sai chính tả, iOS tự động đề xuất từ đúng.
+   * Có thể tự động thay thế khi bấm **space**.
+
+3. **Gõ bằng cách vuốt (QuickPath / Swipe Typing)**
+
+   * Vuốt từ chữ cái này sang chữ cái khác để nhập từ (giống Gboard).
+
+4. **Dictation (Nhập bằng giọng nói)**
+
+   * Nút micro cho phép nói → chuyển thành văn bản.
+
+5. **Emoji & Memoji**
+
+   * Thanh emoji riêng, gợi ý emoji tự động khi gõ chữ.
+   * Memoji Stickers (bản iOS mới).
+
+6. **Đa ngôn ngữ thông minh**
+
+   * Có thể gõ xen lẫn nhiều ngôn ngữ mà không cần đổi bàn phím.
+
+7. **Shortcuts (Text Replacement)**
+
+   * Ví dụ: gõ “omw” → tự động thành “On my way!”.
+
+---
+
+## 🎨 Hiệu ứng và trải nghiệm đặc trưng
+
+1. **Hiệu ứng phím nhấn (Key Pop-Up)**
+
+   * Khi nhấn một phím → chữ sẽ phóng to trong “bubble” nhỏ phía trên.
+
+2. **Hiệu ứng gõ mượt mà**
+
+   * Các phím bấm có **animation nhẹ** khi nhấn, không quá “nặng”.
+
+3. **Âm thanh gõ phím**
+
+   * Âm *tick* đặc trưng của iOS (có thể bật/tắt).
+
+4. **Rung phản hồi (Haptic Feedback)**
+
+   * iPhone có rung nhẹ khi gõ (từ iOS 16).
+
+5. **Hiệu ứng chuyển bàn phím (Keyboard Transition)**
+
+   * Khi đổi bàn phím (emoji, số, ngôn ngữ) có hiệu ứng mượt mà.
+
+6. **Thanh gợi ý hiển thị theo animation**
+
+   * Khi có gợi ý mới, chữ xuất hiện bằng hiệu ứng fade/slide nhẹ.
+
+---
+
+## 🛠️ Gợi ý để bạn làm trên Android
+
+* **UI/UX**: Dùng **RecyclerView/LinearLayout** cho hàng gợi ý từ.
+* **Animation**: Dùng **Scale Animation** cho hiệu ứng chữ nổi lên khi nhấn phím.
+* **Âm thanh & Haptic**: Tích hợp `AudioManager` + `Vibrator` API.
+* **Auto-suggest**: Bạn có thể dùng từ điển (hoặc AI gợi ý nâng cao).
+* **Swipe typing**: Cần custom gesture recognizer để nối các phím.
+
+---
+
+👉 Bạn có muốn mình viết luôn **bảng so sánh chi tiết** giữa bàn phím iOS và Gboard (Android gốc) để bạn biết nên lấy tính năng nào đặc trưng cho app không?
