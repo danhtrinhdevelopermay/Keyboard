@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="#F9FAFB"
+    android:gravity="center">
+
+    <!-- App Icon -->
+    <ImageView
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@mipmap/ic_launcher"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/icon_background" />
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="iOS Keyboard for Android"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#1F2937"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Description -->
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="16sp"
+        android:textColor="#6B7280"
+        android:lineSpacingExtra="4dp"
+        android:layout_marginBottom="48dp"
+        android:gravity="center" />
+
+    <!-- Enable Keyboard Button -->
+    <Button
+        android:id="@+id/enableKeyboard"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="Kích hoạt bàn phím"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/button_primary"
+        android:layout_marginBottom="16dp"
+        android:textAllCaps="false" />
+
+    <!-- Select Keyboard Button -->
+    <Button
+        android:id="@+id/selectKeyboard"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="Chọn bàn phím"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="#007AFF"
+        android:background="@drawable/button_secondary"
+        android:textAllCaps="false" />
+
+</LinearLayout>

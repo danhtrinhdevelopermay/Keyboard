@@ -2,7 +2,15 @@
 
 ## Overview
 
-iOS Keyboard Android is a Flutter-based mobile application that recreates the iOS keyboard interface for Android devices. The project provides a pixel-perfect replica of Apple's keyboard design, implemented as an Android Input Method Service (IME). The application includes a web-based demo interface for showcasing the keyboard's visual design and functionality, along with automated GitHub Actions workflows for continuous APK building and distribution.
+iOS Keyboard Android is a fully functional Android Input Method Service (IME) that provides a working iOS-style keyboard for Android devices. The application replaces the default Android keyboard with a pixel-perfect replica of Apple's keyboard interface, complete with native Android text input functionality. Users can install this as their system keyboard and use it across all Android applications. The project includes automated GitHub Actions workflows for continuous APK building and distribution.
+
+## Recent Changes (August 17, 2025)
+
+✓ **Created functional Android keyboard service**: Implemented complete KeyboardService with text input capabilities
+✓ **Added multiple keyboard layouts**: QWERTY letters, numbers/symbols with switching functionality  
+✓ **Built native Android UI**: Native XML layouts with iOS-style design instead of Flutter components
+✓ **Fixed launcher icons**: Created proper app icons for all Android density levels
+✓ **Added setup interface**: MainActivity helps users enable and select the keyboard in Android settings
 
 ## User Preferences
 
@@ -11,14 +19,16 @@ Preferred communication style: Simple, everyday language.
 ## System Architecture
 
 ### Frontend Architecture
-- **Flutter Framework**: Cross-platform mobile development using Dart, enabling native Android integration while maintaining iOS-like UI components
+- **Native Android Components**: Pure Android XML layouts and Kotlin/Java for optimal performance and system integration
+- **Input Method Service**: Core Android IME implementation allowing full keyboard functionality across all apps
 - **Web Demo Interface**: HTML/CSS/JavaScript implementation providing an interactive keyboard preview with iOS-styled visual elements
-- **Component-Based Design**: Modular keyboard layout with reusable key components, supporting multiple input modes (letters, numbers, symbols)
+- **Multi-Layout Design**: QWERTY letters and numbers/symbols keyboards with seamless switching
 
 ### Mobile Application Structure
-- **Input Method Service (IME)**: Core Android service integration allowing the app to function as a system-wide keyboard replacement
-- **State Management**: JavaScript-based state handling for shift modes, number/symbol toggling, and text input processing
-- **Visual Feedback System**: Touch response animations and key press effects mimicking iOS keyboard behavior
+- **KeyboardService**: Fully functional Android IME with text input, deletion, and mode switching capabilities
+- **MainActivity**: Setup interface guiding users through keyboard activation and selection process
+- **State Management**: Kotlin-based state handling for shift modes, caps lock, and keyboard layout switching
+- **Visual Design System**: iOS-themed key backgrounds, colors, and layout matching Apple's keyboard aesthetics
 
 ### Build and Deployment Pipeline
 - **GitHub Actions Integration**: Automated CI/CD workflow for building and releasing APK files
@@ -33,9 +43,9 @@ Preferred communication style: Simple, everyday language.
 ## External Dependencies
 
 ### Development Frameworks
-- **Flutter SDK**: Primary development framework for cross-platform mobile app creation
 - **Android SDK**: Native Android development tools and APIs for IME service integration
-- **Dart Programming Language**: Core language for Flutter application logic
+- **Kotlin Programming Language**: Primary language for Android keyboard service implementation
+- **AndroidX Libraries**: Modern Android support libraries for UI components and compatibility
 
 ### Build and CI/CD Tools
 - **GitHub Actions**: Automated build pipeline for continuous integration and APK generation
