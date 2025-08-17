@@ -14,6 +14,8 @@ iOS QuickType Keyboard for Android is a comprehensive Android Input Method Servi
 ✓ **Fixed Android build issues**: Resolved Kotlin dependency conflicts for GitHub Actions APK builds
 ✓ **Added QuickType features**: Implemented auto-suggestions, auto-correction, text shortcuts, haptic feedback, and iOS sounds
 ✓ **Created web demo**: Built interactive QuickType demonstration showing all keyboard features
+✓ **Fixed font resource errors**: Removed problematic sf_pro_text font references causing Android build failures
+✓ **Created simple HTML page**: Added basic "hello world" page while preserving QuickType demo features
 
 ## User Preferences
 

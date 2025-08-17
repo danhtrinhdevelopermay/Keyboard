@@ -6,6 +6,6 @@
     android:background="@drawable/key_popup_background"
     android:textColor="#000000"
     android:textSize="32sp"
-    android:fontFamily="@font/sf_pro_text"
+    android:fontFamily="sans-serif"
     android:elevation="8dp"
     android:layout_marginBottom="10dp" />
