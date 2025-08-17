@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#D1D3D4">
+
+    <!-- QuickType Suggestion Bar -->
+    <include 
+        android:id="@+id/suggestionBar"
+        layout="@layout/suggestion_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <!-- Separator line -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#C7C7CC" />
+
+    <!-- Main Keyboard View -->
+    <android.inputmethodservice.KeyboardView
+        android:id="@+id/keyboardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#D1D3D4"
+        android:keyBackground="@drawable/key_background"
+        android:keyTextColor="#000000"
+        android:keyTextSize="22sp"
+        android:keyPreviewLayout="@layout/key_preview"
+        android:keyPreviewOffset="0dp"
+        android:keyPreviewHeight="80dp"
+        android:popupLayout="@layout/key_preview" />
+
+</LinearLayout>

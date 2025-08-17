@@ -12,6 +12,8 @@ iOS Keyboard Android is a fully functional Android Input Method Service (IME) th
 ✓ **Fixed launcher icons**: Created proper app icons for all Android density levels
 ✓ **Added setup interface**: MainActivity helps users enable and select the keyboard in Android settings
 ✓ **Fixed Android build issues**: Resolved Kotlin dependency conflicts for GitHub Actions APK builds
+✓ **Added QuickType features**: Implemented auto-suggestions, auto-correction, text shortcuts, haptic feedback, and iOS sounds
+✓ **Created web demo**: Built interactive QuickType demonstration showing all keyboard features
 
 ## User Preferences
 
@@ -30,6 +32,8 @@ Preferred communication style: Simple, everyday language.
 - **MainActivity**: Setup interface guiding users through keyboard activation and selection process
 - **State Management**: Kotlin-based state handling for shift modes, caps lock, and keyboard layout switching
 - **Visual Design System**: iOS-themed key backgrounds, colors, and layout matching Apple's keyboard aesthetics
+- **QuickType Engine**: Advanced suggestion system with auto-correction, text expansion, and emoji recommendations
+- **Haptic & Audio Systems**: iOS-style vibration feedback and keyboard sounds for authentic experience
 
 ### Build and Deployment Pipeline
 - **GitHub Actions Integration**: Automated CI/CD workflow for building and releasing APK files
@@ -83,3 +87,24 @@ Preferred communication style: Simple, everyday language.
 - `android/build.gradle`: Updated Kotlin version and added resolution strategy
 - `android/app/build.gradle`: Changed stdlib dependency
 - `android/gradle.properties`: Added build optimization settings
+
+## QuickType Implementation (August 17, 2025)
+
+### Features Added:
+1. **Smart Word Suggestions**: Context-aware predictions for Vietnamese and English
+2. **Auto-Correction Engine**: Automatic spelling fixes with iOS-style behavior
+3. **Text Shortcuts**: Expandable abbreviations (omw → On my way!, ty → Thank you)
+4. **Emoji Suggestions**: Context-based emoji recommendations
+5. **Haptic Feedback**: iOS-style vibration patterns for different key types
+6. **Keyboard Sounds**: Authentic iOS audio feedback system
+7. **Key Pop-up Effects**: iOS-style character preview on key press
+
+### Components Created:
+- `SuggestionEngine.kt`: Word prediction and auto-correction logic
+- `HapticFeedback.kt`: Vibration patterns matching iOS behavior
+- `SoundManager.kt`: Audio feedback system for keyboard interactions
+- `TextExpansionManager.kt`: Text shortcuts and abbreviation expansion
+- `SwipeGestureDetector.kt`: Framework for future swipe-to-type feature
+- `suggestion_bar.xml`: QuickType suggestion bar layout
+- `keyboard_container.xml`: Combined keyboard with suggestion bar
+- `quicktype_demo.html`: Interactive web demonstration of all features

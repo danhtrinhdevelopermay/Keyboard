@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:orientation="horizontal"
+    android:background="#F2F2F7"
+    android:paddingStart="8dp"
+    android:paddingEnd="8dp"
+    android:gravity="center_vertical">
+
+    <!-- First suggestion -->
+    <TextView
+        android:id="@+id/suggestion1"
+        android:layout_width="0dp"
+        android:layout_height="32dp"
+        android:layout_weight="1"
+        android:background="@drawable/suggestion_button"
+        android:gravity="center"
+        android:textColor="#007AFF"
+        android:textSize="16sp"
+        android:fontFamily="@font/sf_pro_text"
+        android:layout_marginEnd="4dp"
+        android:clickable="true"
+        android:focusable="true" />
+
+    <!-- Second suggestion -->
+    <TextView
+        android:id="@+id/suggestion2"
+        android:layout_width="0dp"
+        android:layout_height="32dp"
+        android:layout_weight="1"
+        android:background="@drawable/suggestion_button"
+        android:gravity="center"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:fontFamily="@font/sf_pro_text"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+        android:clickable="true"
+        android:focusable="true" />
+
+    <!-- Third suggestion -->
+    <TextView
+        android:id="@+id/suggestion3"
+        android:layout_width="0dp"
+        android:layout_height="32dp"
+        android:layout_weight="1"
+        android:background="@drawable/suggestion_button"
+        android:gravity="center"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:fontFamily="@font/sf_pro_text"
+        android:layout_marginStart="4dp"
+        android:clickable="true"
+        android:focusable="true" />
+
+</LinearLayout>
