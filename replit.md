@@ -11,6 +11,7 @@ iOS Keyboard Android is a fully functional Android Input Method Service (IME) th
 ✓ **Built native Android UI**: Native XML layouts with iOS-style design instead of Flutter components
 ✓ **Fixed launcher icons**: Created proper app icons for all Android density levels
 ✓ **Added setup interface**: MainActivity helps users enable and select the keyboard in Android settings
+✓ **Fixed Android build issues**: Resolved Kotlin dependency conflicts for GitHub Actions APK builds
 
 ## User Preferences
 
@@ -60,3 +61,25 @@ Preferred communication style: Simple, everyday language.
 - **Input Method Service API**: Android system service for keyboard functionality
 - **Android Settings Integration**: System-level keyboard management and selection interface
 - **Permission System**: Android app permissions for keyboard access and functionality
+
+## Build Issues and Solutions
+
+### Kotlin Dependency Conflicts (Fixed August 17, 2025)
+
+**Problem**: APK build failed in GitHub Actions with duplicate class errors:
+- Kotlin stdlib 1.8.10 vs older stdlib-jdk7/jdk8 versions
+- Error: "Duplicate class kotlin.collections.jdk8.CollectionsJDK8Kt found in modules"
+
+**Root Cause**: Flutter dependencies pulled in newer Kotlin stdlib (1.8.10) while project used older version (1.7.10), causing class conflicts.
+
+**Solution Applied**:
+1. **Updated Kotlin version** in `android/build.gradle` from 1.7.10 to 1.8.10
+2. **Updated Android Gradle Plugin** from 7.3.0 to 7.4.2 for compatibility
+3. **Changed dependency** in `android/app/build.gradle` from `kotlin-stdlib-jdk7` to `kotlin-stdlib`
+4. **Added dependency resolution strategy** forcing consistent Kotlin versions across all modules
+5. **Enhanced gradle.properties** with R8 and desugaring configurations
+
+**Files Modified**:
+- `android/build.gradle`: Updated Kotlin version and added resolution strategy
+- `android/app/build.gradle`: Changed stdlib dependency
+- `android/gradle.properties`: Added build optimization settings
