@@ -2,7 +2,7 @@
 
 ## Overview
 
-iOS Keyboard Android is a fully functional Android Input Method Service (IME) that provides a working iOS-style keyboard for Android devices. The application replaces the default Android keyboard with a pixel-perfect replica of Apple's keyboard interface, complete with native Android text input functionality. Users can install this as their system keyboard and use it across all Android applications. The project includes automated GitHub Actions workflows for continuous APK building and distribution.
+iOS QuickType Keyboard for Android is a comprehensive Android Input Method Service (IME) featuring complete iOS-style QuickType functionality. The application provides auto-correction, smart word suggestions, text shortcuts, emoji recommendations, haptic feedback, and authentic iOS keyboard sounds. Built with native Android components for optimal performance, it includes both a functional keyboard service and an interactive web demonstration. The project features automated GitHub Actions workflows for APK building and distribution.
 
 ## Recent Changes (August 17, 2025)
 
