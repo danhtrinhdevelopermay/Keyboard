@@ -72,8 +72,8 @@ class SpotlightKeyboardService : InputMethodService() {
         keyView?.let {
             it.text = text
             it.setOnClickListener { 
-                hapticFeedback?.vibrate(HapticFeedback.HapticType.KEY_PRESS)
-                soundManager?.playKeySound()
+                hapticFeedback?.performKeyPress()
+                soundManager?.playKeyClick()
                 action()
             }
         }
@@ -83,14 +83,14 @@ class SpotlightKeyboardService : InputMethodService() {
         // Emoji button
         val emojiButton = containerView?.findViewById<ImageView>(R.id.emojiButton)
         emojiButton?.setOnClickListener {
-            hapticFeedback?.vibrate(HapticFeedback.HapticType.KEY_PRESS)
+            hapticFeedback?.performKeyPress()
             // Could open emoji picker
         }
         
         // Microphone button
         val micButton = containerView?.findViewById<ImageView>(R.id.micButton)
         micButton?.setOnClickListener {
-            hapticFeedback?.vibrate(HapticFeedback.HapticType.KEY_PRESS)
+            hapticFeedback?.performKeyPress()
             // Could start voice input
         }
     }
@@ -112,8 +112,8 @@ class SpotlightKeyboardService : InputMethodService() {
     }
     
     private fun onKeyPressed(char: String) {
-        hapticFeedback?.vibrate(HapticFeedback.HapticType.KEY_PRESS)
-        soundManager?.playKeySound()
+        hapticFeedback?.performKeyPress()
+        soundManager?.playKeyClick()
         
         val processedChar = if (char != " " && isShift && char.matches(Regex("[a-z]"))) {
             char.uppercase()
@@ -130,7 +130,7 @@ class SpotlightKeyboardService : InputMethodService() {
         currentInputConnection?.let { ic ->
             if (char == " ") {
                 // Check for text expansion before typing space
-                val expandedText = textExpansionManager?.expandText(currentWord.toString())
+                val expandedText = textExpansionManager?.getExpansion(currentWord.toString())
                 if (expandedText != null && expandedText != currentWord.toString()) {
                     // Delete the current word and replace with expansion
                     ic.deleteSurroundingText(currentWord.length, 0)
@@ -143,6 +143,8 @@ class SpotlightKeyboardService : InputMethodService() {
                 ic.commitText(processedChar, 1)
                 if (char != " ") {
                     currentWord.append(char)
+                } else {
+                    currentWord.clear()
                 }
             }
         }
@@ -155,8 +157,8 @@ class SpotlightKeyboardService : InputMethodService() {
     }
     
     private fun onBackspace() {
-        hapticFeedback?.vibrate(HapticFeedback.HapticType.KEY_PRESS)
-        soundManager?.playKeySound()
+        hapticFeedback?.performDelete()
+        soundManager?.playDelete()
         
         // Remove from search input
         val currentText = searchInput?.text.toString()

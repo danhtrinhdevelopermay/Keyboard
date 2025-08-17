@@ -1,0 +1,58 @@
+
+Navigation Menu
+Keyboard
+
+Code
+Issues
+Pull requests
+Build Android APK
+Update keyboard to use iOS Spotlight design with blur effects #18
+build
+failed now in 4m 1s
+4s
+1s
+0s
+5s
+31s
+8s
+8s
+12s
+2m 48s
+Running Gradle task 'assembleRelease'...                        
+Checking the license for package Android SDK Build-Tools 30.0.3 in /usr/local/lib/android/sdk/licenses
+License for package Android SDK Build-Tools 30.0.3 accepted.
+Preparing "Install Android SDK Build-Tools 30.0.3 (revision: 30.0.3)".
+"Install Android SDK Build-Tools 30.0.3 (revision: 30.0.3)" ready.
+Installing Android SDK Build-Tools 30.0.3 in /usr/local/lib/android/sdk/build-tools/30.0.3
+"Install Android SDK Build-Tools 30.0.3 (revision: 30.0.3)" complete.
+"Install Android SDK Build-Tools 30.0.3 (revision: 30.0.3)" finished.
+Font asset "MaterialIcons-Regular.otf" was tree-shaken, reducing it from 1645184 to 1664 bytes (99.9% reduction). Tree-shaking can be disabled by providing the --no-tree-shake-icons flag when building your app.
+e: file:///home/runner/work/Keyboard/Keyboard/android/app/src/main/kotlin/com/example/ios_keyboard_android/SpotlightKeyboardService.kt:75:33 Unresolved reference: vibrate
+e: file:///home/runner/work/Keyboard/Keyboard/android/app/src/main/kotlin/com/example/ios_keyboard_android/SpotlightKeyboardService.kt:75:56 Unresolved reference: HapticType
+e: file:///home/runner/work/Keyboard/Keyboard/android/app/src/main/kotlin/com/example/ios_keyboard_android/SpotlightKeyboardService.kt:76:31 Unresolved reference: playKeySound
+e: file:///home/runner/work/Keyboard/Keyboard/android/app/src/main/kotlin/com/example/ios_keyboard_android/SpotlightKeyboardService.kt:86:29 Unresolved reference: vibrate
+e: file:///home/runner/work/Keyboard/Keyboard/android/app/src/main/kotlin/com/example/ios_keyboard_android/SpotlightKeyboardService.kt:86:52 Unresolved reference: HapticType
+e: file:///home/runner/work/Keyboard/Keyboard/android/app/src/main/kotlin/com/example/ios_keyboard_android/SpotlightKeyboardService.kt:93:29 Unresolved reference: vibrate
+e: file:///home/runner/work/Keyboard/Keyboard/android/app/src/main/kotlin/com/example/ios_keyboard_android/SpotlightKeyboardService.kt:93:52 Unresolved reference: HapticType
+e: file:///home/runner/work/Keyboard/Keyboard/android/app/src/main/kotlin/com/example/ios_keyboard_android/SpotlightKeyboardService.kt:115:25 Unresolved reference: vibrate
+e: file:///home/runner/work/Keyboard/Keyboard/android/app/src/main/kotlin/com/example/ios_keyboard_android/SpotlightKeyboardService.kt:115:48 Unresolved reference: HapticType
+e: file:///home/runner/work/Keyboard/Keyboard/android/app/src/main/kotlin/com/example/ios_keyboard_android/SpotlightKeyboardService.kt:116:23 Unresolved reference: playKeySound
+e: file:///home/runner/work/Keyboard/Keyboard/android/app/src/main/kotlin/com/example/ios_keyboard_android/SpotlightKeyboardService.kt:133:58 Unresolved reference: expandText
+e: file:///home/runner/work/Keyboard/Keyboard/android/app/src/main/kotlin/com/example/ios_keyboard_android/SpotlightKeyboardService.kt:144:17 'if' must have both main and 'else' branches if used as an expression
+e: file:///home/runner/work/Keyboard/Keyboard/android/app/src/main/kotlin/com/example/ios_keyboard_android/SpotlightKeyboardService.kt:158:25 Unresolved reference: vibrate
+e: file:///home/runner/work/Keyboard/Keyboard/android/app/src/main/kotlin/com/example/ios_keyboard_android/SpotlightKeyboardService.kt:158:48 Unresolved reference: HapticType
+e: file:///home/runner/work/Keyboard/Keyboard/android/app/src/main/kotlin/com/example/ios_keyboard_android/SpotlightKeyboardService.kt:159:23 Unresolved reference: playKeySound
+FAILURE: Build failed with an exception.
+* What went wrong:
+Execution failed for task ':app:compileReleaseKotlin'.
+> A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
+   > Compilation error. See log for more details
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+* Get more help at https://help.gradle.org
+BUILD FAILED in 2m 47s
+Running Gradle task 'assembleRelease'...                          167.6s
+Gradle task assembleRelease failed with exit code 1
+Error: Process completed with exit code 1.
