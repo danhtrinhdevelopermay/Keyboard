@@ -5,7 +5,7 @@ import android.inputmethodservice.Keyboard
 import android.inputmethodservice.KeyboardView
 import android.view.View
 import android.view.inputmethod.EditorInfo
-import android.media.AudioManager
+import android.view.KeyEvent
 
 class KeyboardService : InputMethodService(), KeyboardView.OnKeyboardActionListener {
     
@@ -52,9 +52,9 @@ class KeyboardService : InputMethodService(), KeyboardView.OnKeyboardActionListe
             }
             Keyboard.KEYCODE_DONE -> {
                 inputConnection?.sendKeyEvent(
-                    android.view.KeyEvent(
-                        android.view.KeyEvent.ACTION_DOWN,
-                        android.view.KeyEvent.KEYCODE_ENTER
+                    KeyEvent(
+                        KeyEvent.ACTION_DOWN,
+                        KeyEvent.KEYCODE_ENTER
                     )
                 )
             }
@@ -62,11 +62,11 @@ class KeyboardService : InputMethodService(), KeyboardView.OnKeyboardActionListe
                 inputConnection?.commitText(" ", 1)
             }
             // Switch to numbers keyboard
-            49, 50, 51 -> { // "123" key codes
+            123 -> { // "123" key code
                 switchToNumbersKeyboard()
             }
             // Switch back to letters keyboard  
-            65, 66, 67 -> { // "ABC" key codes
+            65 -> { // "ABC" key codes - using just 'A' for simplicity
                 switchToQwertyKeyboard()
             }
             else -> {
