@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iOS Spotlight Keyboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a4f72, #2d5f5f, #3a6b3a, #4a5a2a);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease-in-out infinite;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Status Bar */
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 20px;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            z-index: 100;
+        }
+
+        .status-left {
+            font-size: 17px;
+            font-weight: 600;
+        }
+
+        .status-center {
+            background: black;
+            border-radius: 20px;
+            width: 120px;
+            height: 28px;
+        }
+
+        .status-right {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .signal-dots {
+            display: flex;
+            gap: 2px;
+        }
+
+        .dot {
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .wifi-icon {
+            width: 16px;
+            height: 12px;
+            background: white;
+            clip-path: polygon(0% 100%, 25% 70%, 50% 85%, 75% 70%, 100% 100%);
+        }
+
+        .battery {
+            width: 24px;
+            height: 12px;
+            border: 1px solid white;
+            border-radius: 2px;
+            position: relative;
+        }
+
+        .battery::after {
+            content: '';
+            position: absolute;
+            right: -3px;
+            top: 3px;
+            width: 2px;
+            height: 6px;
+            background: white;
+            border-radius: 0 1px 1px 0;
+        }
+
+        .battery-fill {
+            width: 90%;
+            height: 100%;
+            background: white;
+            border-radius: 1px;
+        }
+
+        /* Siri Suggestions Header */
+        .siri-header {
+            padding: 20px 24px 16px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .siri-title {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .show-more {
+            color: #64B5F6;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        /* App Suggestions */
+        .app-suggestions {
+            padding: 0 24px 20px;
+            display: flex;
+            gap: 16px;
+        }
+
+        .app-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            flex: 1;
+        }
+
+        .app-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 13px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .app-icon.reminders {
+            background: linear-gradient(135deg, #FF6B6B, #FF8E8E);
+        }
+
+        .app-icon.calendar {
+            background: white;
+        }
+
+        .app-icon.shortcuts {
+            background: linear-gradient(135deg, #667EEA, #764BA2);
+        }
+
+        .app-icon.messages {
+            background: linear-gradient(135deg, #4CAF50, #8BC34A);
+        }
+
+        .app-icon::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 13px;
+            border: 0.5px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .app-label {
+            color: white;
+            font-size: 12px;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        /* Info Text */
+        .info-text {
+            padding: 0 40px 40px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .learn-more {
+            color: #64B5F6;
+            text-decoration: none;
+        }
+
+        /* Main Content Area */
+        .main-content {
+            flex: 1;
+            position: relative;
+        }
+
+        /* Search and Keyboard Container */
+        .search-keyboard-container {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border-radius: 16px 16px 0 0;
+            padding: 16px;
+        }
+
+        /* Search Bar */
+        .search-container {
+            margin-bottom: 12px;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background: rgba(118, 118, 128, 0.24);
+            backdrop-filter: blur(20px);
+            border-radius: 10px;
+            padding: 12px 16px;
+            gap: 8px;
+        }
+
+        .search-icon {
+            width: 18px;
+            height: 18px;
+            opacity: 0.6;
+            color: white;
+        }
+
+        .search-input {
+            flex: 1;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 17px;
+            outline: none;
+        }
+
+        .search-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Keyboard */
+        .keyboard {
+            background: transparent;
+        }
+
+        .keyboard-row {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 8px;
+            gap: 6px;
+        }
+
+        .key {
+            background: rgba(118, 118, 128, 0.3);
+            backdrop-filter: blur(20px);
+            border: none;
+            border-radius: 6px;
+            color: white;
+            font-size: 22px;
+            font-weight: 400;
+            width: 32px;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.1s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .key::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 6px;
+            border: 0.5px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .key:active {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        .key.wide {
+            width: 76px;
+        }
+
+        .key.extra-wide {
+            width: 120px;
+        }
+
+        .key.special {
+            background: rgba(157, 157, 157, 0.3);
+            font-size: 16px;
+        }
+
+        .key.space {
+            width: 200px;
+            font-size: 16px;
+        }
+
+        .key.numbers {
+            background: rgba(72, 72, 74, 0.5);
+            font-size: 16px;
+        }
+
+        .key.search-btn {
+            background: rgba(72, 72, 74, 0.5);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 16px;
+        }
+
+        /* Bottom Controls */
+        .bottom-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0 8px;
+        }
+
+        .emoji-btn, .mic-btn {
+            width: 32px;
+            height: 32px;
+            background: rgba(118, 118, 128, 0.3);
+            border: none;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .home-indicator {
+            width: 134px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 3px;
+            margin: 0 auto;
+        }
+
+        /* Icons */
+        .icon-reminders::before {
+            content: '•';
+            color: #FF6B6B;
+            font-size: 30px;
+        }
+
+        .icon-calendar::before {
+            content: '17';
+            color: #000;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .icon-shortcuts::before {
+            content: '⚡';
+            font-size: 24px;
+        }
+
+        .icon-messages::before {
+            content: '💬';
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Status Bar -->
+    <div class="status-bar">
+        <div class="status-left">2:59</div>
+        <div class="status-center"></div>
+        <div class="status-right">
+            <div class="signal-dots">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+            <div class="wifi-icon"></div>
+            <div class="battery">
+                <div class="battery-fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Siri Suggestions Header -->
+    <div class="siri-header">
+        <div class="siri-title">Siri Suggestions</div>
+        <div class="show-more">Show More</div>
+    </div>
+
+    <!-- App Suggestions -->
+    <div class="app-suggestions">
+        <div class="app-item">
+            <div class="app-icon reminders">
+                <div class="icon-reminders"></div>
+            </div>
+            <div class="app-label">Reminders</div>
+        </div>
+        <div class="app-item">
+            <div class="app-icon calendar">
+                <div class="icon-calendar"></div>
+            </div>
+            <div class="app-label">Calendar</div>
+        </div>
+        <div class="app-item">
+            <div class="app-icon shortcuts">
+                <div class="icon-shortcuts"></div>
+            </div>
+            <div class="app-label">Shortcuts</div>
+        </div>
+        <div class="app-item">
+            <div class="app-icon messages">
+                <div class="icon-messages"></div>
+            </div>
+            <div class="app-label">Messages</div>
+        </div>
+    </div>
+
+    <!-- Info Text -->
+    <div class="info-text">
+        Suggestions before and as you type are personalized. You<br>
+        can adjust this in settings.<br>
+        <a href="#" class="learn-more">Learn More...</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Search and Keyboard Container -->
+        <div class="search-keyboard-container">
+            <!-- Search Bar -->
+            <div class="search-container">
+                <div class="search-bar">
+                    <div class="search-icon">🔍</div>
+                    <input type="text" class="search-input" placeholder="Search" id="searchInput">
+                </div>
+            </div>
+
+            <!-- Keyboard -->
+            <div class="keyboard">
+                <!-- First Row -->
+                <div class="keyboard-row">
+                    <button class="key" onclick="typeChar('q')">q</button>
+                    <button class="key" onclick="typeChar('w')">w</button>
+                    <button class="key" onclick="typeChar('e')">e</button>
+                    <button class="key" onclick="typeChar('r')">r</button>
+                    <button class="key" onclick="typeChar('t')">t</button>
+                    <button class="key" onclick="typeChar('y')">y</button>
+                    <button class="key" onclick="typeChar('u')">u</button>
+                    <button class="key" onclick="typeChar('i')">i</button>
+                    <button class="key" onclick="typeChar('o')">o</button>
+                    <button class="key" onclick="typeChar('p')">p</button>
+                </div>
+
+                <!-- Second Row -->
+                <div class="keyboard-row">
+                    <button class="key" onclick="typeChar('a')">a</button>
+                    <button class="key" onclick="typeChar('s')">s</button>
+                    <button class="key" onclick="typeChar('d')">d</button>
+                    <button class="key" onclick="typeChar('f')">f</button>
+                    <button class="key" onclick="typeChar('g')">g</button>
+                    <button class="key" onclick="typeChar('h')">h</button>
+                    <button class="key" onclick="typeChar('j')">j</button>
+                    <button class="key" onclick="typeChar('k')">k</button>
+                    <button class="key" onclick="typeChar('l')">l</button>
+                </div>
+
+                <!-- Third Row -->
+                <div class="keyboard-row">
+                    <button class="key special" onclick="toggleShift()">⇧</button>
+                    <button class="key" onclick="typeChar('z')">z</button>
+                    <button class="key" onclick="typeChar('x')">x</button>
+                    <button class="key" onclick="typeChar('c')">c</button>
+                    <button class="key" onclick="typeChar('v')">v</button>
+                    <button class="key" onclick="typeChar('b')">b</button>
+                    <button class="key" onclick="typeChar('n')">n</button>
+                    <button class="key" onclick="typeChar('m')">m</button>
+                    <button class="key special" onclick="backspace()">⌫</button>
+                </div>
+
+                <!-- Bottom Row -->
+                <div class="keyboard-row">
+                    <button class="key numbers" onclick="toggleNumbers()">123</button>
+                    <button class="key space" onclick="typeChar(' ')">space</button>
+                    <button class="key search-btn" onclick="performSearch()">search</button>
+                </div>
+            </div>
+
+            <!-- Bottom Controls -->
+            <div class="bottom-controls">
+                <button class="emoji-btn">😊</button>
+                <div class="home-indicator"></div>
+                <button class="mic-btn">🎤</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let isShift = false;
+        let isNumbers = false;
+        const searchInput = document.getElementById('searchInput');
+
+        function typeChar(char) {
+            if (char === ' ') {
+                searchInput.value += ' ';
+            } else if (isShift && char.match(/[a-z]/)) {
+                searchInput.value += char.toUpperCase();
+                isShift = false;
+                updateShiftButton();
+            } else {
+                searchInput.value += char;
+            }
+            searchInput.focus();
+        }
+
+        function backspace() {
+            searchInput.value = searchInput.value.slice(0, -1);
+            searchInput.focus();
+        }
+
+        function toggleShift() {
+            isShift = !isShift;
+            updateShiftButton();
+            updateKeyboardCase();
+        }
+
+        function updateShiftButton() {
+            const shiftBtn = document.querySelector('.key.special');
+            if (isShift) {
+                shiftBtn.style.background = 'rgba(255, 255, 255, 0.3)';
+            } else {
+                shiftBtn.style.background = 'rgba(157, 157, 157, 0.3)';
+            }
+        }
+
+        function updateKeyboardCase() {
+            const letterKeys = document.querySelectorAll('.key:not(.special):not(.numbers):not(.space):not(.search-btn)');
+            letterKeys.forEach(key => {
+                const char = key.textContent;
+                if (char.match(/[a-z]/)) {
+                    key.textContent = isShift ? char.toUpperCase() : char.toLowerCase();
+                }
+            });
+        }
+
+        function toggleNumbers() {
+            // This would switch to numbers layout
+            alert('Number layout coming soon!');
+        }
+
+        function performSearch() {
+            const query = searchInput.value.trim();
+            if (query) {
+                alert(`Searching for: ${query}`);
+            }
+        }
+
+        // Auto-focus search input
+        searchInput.focus();
+
+        // Handle physical keyboard input
+        document.addEventListener('keydown', function(e) {
+            if (e.target === searchInput) {
+                return; // Let normal input work
+            }
+            
+            e.preventDefault();
+            
+            if (e.key === 'Backspace') {
+                backspace();
+            } else if (e.key === 'Enter') {
+                performSearch();
+            } else if (e.key === ' ') {
+                typeChar(' ');
+            } else if (e.key.match(/^[a-zA-Z]$/)) {
+                typeChar(e.key.toLowerCase());
+            }
+        });
+    </script>
+</body>
+</html>
