@@ -1,9 +1,10 @@
-modules = ["nodejs-20", "python-3.11", "flutter"]
+modules = ["nodejs-20", "python-3.11", "flutter", "dart"]
 [agent]
 expertMode = true
 
 [nix]
 channel = "stable-25_05"
+packages = ["imagemagick"]
 
 [workflows]
 runButton = "Project"
